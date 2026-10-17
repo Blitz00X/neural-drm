@@ -64,8 +64,8 @@ def main():
         for arm in ARMS:
             points=[r[field] for r in costrows if r['arm']==arm and r[field] is not None]
             if points: ax.errorbar([64],[np.mean(points)],yerr=[[np.mean(points)-min(points)],[max(points)-np.mean(points)]],fmt='o',color=COLORS[arm],label=arm)
-        ax.set(xlabel='Width',ylabel=label,xticks=[64,256,1024,4096],xscale='log'); ax.set_xticklabels(['64','256','1024','4096']);ax.legend(loc='upper right')
-        note(ax,'Only width 64 measured.\nNR is missing, never zero.\nB: acceptance required. C: budget-censored.'); ax.grid(alpha=.15)
+        ax.set(xlabel='Width',ylabel=label,xscale='log'); ax.set_xticks([64,256,1024,4096],labels=['64','256','1024','4096']); ax.legend(loc='upper right')
+        ax.text(.5,.75,'Only width 64 measured.\nNR is missing, never zero.\nB: acceptance required. C: budget-censored.',ha='center',va='center',transform=ax.transAxes,color='#475569',fontsize=9); ax.grid(alpha=.15)
     finish(fig,'01_attack_cost_vs_width.png')
     fig,ax=plt.subplots(figsize=(7,4))
     aa=[r for r in records if r['arm']=='A' and r.get('h1')]
@@ -312,6 +312,9 @@ NaN denetimi regresyon testinde yapay NaN ile doğrulandı; bu bilimsel NaN koş
 `results/metrics.csv`, `costs.csv`, `acceptance.csv` yeniden üretilebilir tablolardır.
 Preregistration SHA256: `{digest}`. Git'te ilk commit ile byte eşitliği ayrıca doğrulanır.
 Kod incelemesi üç önemli kayıt sorununu saptadı; regresyonlarla düzeltildi.
+README komutuyla 2000-adımlı pilot tekrar çalıştırıldı; R², accuracy ve MSE
+ilk pilot ile bit düzeyinde aynı bulundu (`results/reproduction_check`).
+Bu kontrol tüm genişlik ızgarasının baştan tekrar çalıştırılması değildir.
 Tam istenen ızgaranın ve güvenlik hipotezlerinin tamamlandığı iddia edilmemektedir.
 '''
     (ROOT/'REPORT.md').write_text(report)

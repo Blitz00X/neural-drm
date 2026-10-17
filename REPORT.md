@@ -211,4 +211,7 @@ NaN denetimi regresyon testinde yapay NaN ile doğrulandı; bu bilimsel NaN koş
 `results/metrics.csv`, `costs.csv`, `acceptance.csv` yeniden üretilebilir tablolardır.
 Preregistration SHA256: `d6e063d09a60c32b8b311336a647a57aefc60765be8473d8e68fe31702353261`. Git'te ilk commit ile byte eşitliği ayrıca doğrulanır.
 Kod incelemesi üç önemli kayıt sorununu saptadı; regresyonlarla düzeltildi.
+README komutuyla 2000-adımlı pilot tekrar çalıştırıldı; R², accuracy ve MSE
+ilk pilot ile bit düzeyinde aynı bulundu (`results/reproduction_check`).
+Bu kontrol tüm genişlik ızgarasının baştan tekrar çalıştırılması değildir.
 Tam istenen ızgaranın ve güvenlik hipotezlerinin tamamlandığı iddia edilmemektedir.

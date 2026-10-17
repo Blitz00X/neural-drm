@@ -1,0 +1,13 @@
+{
+  "reason": "H1 task fidelity failed; B/C and attack inference prohibited",
+  "unstarted": [
+    "C",
+    "B1",
+    "B2"
+  ],
+  "metrics": {
+    "r2": 0.9697134510429761,
+    "acc": 0.94333,
+    "mse": 0.00047041246254267877
+  }
+}
