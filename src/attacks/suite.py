@@ -20,6 +20,12 @@ def attack_suite(model,secret,x,v,t,config,folder,seed):
     ledger=[]
     for name,call in calls:
         start=time.time()
-        try: call(); row={'attack':name,'status':'finished'}
-        except Exception: row={'attack':name,'status':'error','traceback':traceback.format_exc()}
-        row['seconds']=time.time()-start; ledger.append(row); save(folder/'ledger.json',ledger)
+        row={'attack':name,'status':'running'}; ledger.append(row); save(folder/'ledger.json',ledger)
+        try:
+            call(); row['status']='finished'
+        except BaseException as exc:
+            row['status']='error' if isinstance(exc,Exception) else 'interrupted'
+            row['traceback']=traceback.format_exc()
+            if not isinstance(exc,Exception): raise
+        finally:
+            row['seconds']=time.time()-start; save(folder/'ledger.json',ledger)

@@ -1,0 +1,21 @@
+arm,seed,width,octaves,oracle_n,search_flops,reason
+A,0,64,4,0,0,Kapı silme
+A,1,64,4,0,0,Kapı silme
+A,2,64,4,0,0,Kapı silme
+A,3,64,4,0,0,Kapı silme
+A,4,64,4,0,0,Kapı silme
+B1,0,64,4,,,NR — eğitim kabulü yok
+B1,1,64,4,,,NR — eğitim kabulü yok
+B1,2,64,4,,,NR — eğitim kabulü yok
+B1,3,64,4,,,NR — eğitim kabulü yok
+B1,4,64,4,,,NR — eğitim kabulü yok
+B2,0,64,4,,,NR — eğitim kabulü yok
+B2,1,64,4,,,NR — eğitim kabulü yok
+B2,2,64,4,,,NR — eğitim kabulü yok
+B2,3,64,4,,,NR — eğitim kabulü yok
+B2,4,64,4,,,NR — eğitim kabulü yok
+C,0,64,4,,,NR — test edilen 500-adım/3-LR bütçesi
+C,1,64,4,,,NR — test edilen 500-adım/3-LR bütçesi
+C,2,64,4,,,NR — test edilen 500-adım/3-LR bütçesi
+C,3,64,4,,,NR — test edilen 500-adım/3-LR bütçesi
+C,4,64,4,,,NR — test edilen 500-adım/3-LR bütçesi

@@ -7,11 +7,16 @@ from .data import world,pools,keys
 from .models import WorldMLP,GatedWorld
 from .train import fit,seed_all
 from .eval import evaluate,high_fidelity
+from .io import save_json
 
 def write(path,obj):
-    Path(path).write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n')
+    save_json(path,obj)
+
+def validate_config(config):
+    if config['test_size']<100000: raise ValueError('Scientific runs require at least 100000 independent test coordinates')
 
 def run(config,root):
+    validate_config(config)
     root=Path(root); root.mkdir(parents=True,exist_ok=False); write(root/'config.json',config)
     torch.set_num_threads(config['threads']); device=config['device']
     write(root/'environment.json',{'python':platform.python_version(),'torch':torch.__version__,
@@ -29,6 +34,7 @@ def run(config,root):
         for arm in ['A','C','B1','B2']:
             start=time.time(); row={'arm':arm,'seed':seed,'status':'running','width':config['width'],'octaves':config['octaves']}
             write(folder/f'{arm}.json',row)
+            model=None
             try:
                 seed_all(seed); model=WorldMLP(config['width'],'C' if arm=='A' else arm).to(device)
                 tr=fit(model,x,f,g if arm.startswith('B') else None,secret if arm.startswith('B') else None,
@@ -64,18 +70,23 @@ def run(config,root):
                     row['accepted'] &= all(high_fidelity(z) for z in row['wrong'].values())
                 row['status']='accepted' if row['accepted'] else 'training_failed'
                 torch.save({'state':model.state_dict(),'secret':secret,'arm':arm,'width':config['width']},folder/f'{arm}.pt')
+                write(folder/f'{arm}.json',row)
                 if row['accepted'] and arm in ['B1','B2']:
+                    row['attack_status']='running'; write(folder/f'{arm}.json',row)
                     from .attacks.suite import attack_suite
                     attack_suite(model,secret,x,v,t,config,folder/arm,seed)
+                    row['attack_status']='finished'
                 if arm=='C':
                     from .attacks.finetune import sample_curve
                     sample_curve(None,'C',config,x,v,t,folder/'C_distillation',seed)
-            except Exception as exc:
-                row['status']='error'; row['error']=repr(exc); row['traceback']=traceback.format_exc()
+            except BaseException as exc:
+                row['status']='error' if isinstance(exc,Exception) else 'interrupted'
+                if row.get('attack_status')=='running': row['attack_status']=row['status']
+                row['error']=repr(exc); row['traceback']=traceback.format_exc()
                 if hasattr(model,'_training_record'): row['training']=model._training_record
                 write(folder/f'{arm}.json',row)
-                if arm=='A':
-                    write(folder/'STOP.json',{'reason':'A execution error','traceback':row['traceback']}); raise
+                if arm=='A' or not isinstance(exc,Exception):
+                    write(folder/'STOP.json',{'reason':'Execution interrupted or A error','traceback':row['traceback']}); raise
             finally:
                 row['seconds']=time.time()-start; write(folder/f'{arm}.json',row)
                 print(json.dumps({k:row[k] for k in ['arm','seed','status','seconds']},ensure_ascii=False),flush=True)

@@ -3,10 +3,10 @@ from pathlib import Path
 import numpy as np
 import torch
 from ..eval import evaluate,high_fidelity
+from ..io import save_json
 
 def save(path,obj):
-    Path(path).parent.mkdir(parents=True,exist_ok=True)
-    Path(path).write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n')
+    save_json(path,obj)
 
 def fixed_wrong_keys(secret,seed):
     rng=np.random.default_rng(seed+8021)

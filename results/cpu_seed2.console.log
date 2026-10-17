@@ -1,1 +1,4 @@
 {"arm": "A", "seed": 2, "status": "accepted", "seconds": 46.32857084274292}
+{"arm": "C", "seed": 2, "status": "accepted", "seconds": 67.98365521430969}
+{"arm": "B1", "seed": 2, "status": "training_failed", "seconds": 53.177855014801025}
+{"arm": "B2", "seed": 2, "status": "training_failed", "seconds": 54.96487069129944}
