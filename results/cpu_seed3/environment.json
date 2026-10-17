@@ -1,0 +1,8 @@
+{
+  "python": "3.12.14",
+  "torch": "2.14.1+cu130",
+  "numpy": "2.3.5",
+  "cuda_available": false,
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "git": "215195d59351d03ec5bf7def45f87f1c31763d6f"
+}
