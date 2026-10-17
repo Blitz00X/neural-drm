@@ -1,0 +1,11 @@
+# Kararlar
+- Kullanıcının ayrıntılı görev metni bağlayıcı tasarım; soru/onay beklemeden yerel uygulama. Yeni ve bağımsız git deposu kullanılacak.
+- Bu ortamda hazır PyTorch/GPU yok; bağımlılık kurulumu deneniyor. CPU pilotundan önce tam ızgara başlatılmayacak.
+- Analitik f/g dünya etiketleri kullanılır. Bu, lisanslı ağın tahminlerini distill etmekten farklı, hatasız oracle erişimidir; raporda açıkça belirtilir.
+- Tam test 100000, validation 4096. Ayrık koordinat havuzları aynı PRNG'den üretilir ve kesişim gerçekten kontrol edilir.
+- Temel frekans 2, oktav genliği 0.5^i, smoothstep value noise, teorik [0,1] normalizasyonu. Biome su h<0.4, dağ h>0.65, diğerleri moisture>0.5 ile orman/ova.
+- A f_net ve C aynı mimari ve aynı başlangıç/eğitim ayarları. A'nın g_net'i bağımsız eğitilir. Kapı silme sıfır FLOPs; bu nedenle H3'ün A'ya 10x oranı tanımsızdır, epsilon ile oran uydurulmaz.
+- Aktivasyon ablasyonu, SAE ve Hamming eğrisi, doğru anahtar koşulunda iç aktivasyonlara erişen ayrıcalıklı teşhislerdir. Anahtar kurtarma/fine-tune saldırısına gizli anahtar aktarılmaz.
+- B2 FiLM üreten parametreler anahtara bağlıdır; talepteki “ayrı lisans yolu yok” ifadesi açık eşitlik/gating bulunmaması olarak yorumlanır; anahtar modülasyon yolu mimaride açıkça vardır.
+- Pilot width=64,c=4,seed=0; ilk eğitim bütçesi 2000 adım, batch 512, Adam lr=0.001; H1 başarısızsa tam ızgara ve saldırı çıkarımı durdurulur. Bu bütçe sonuç görülmeden sabitlenmiştir. Pilot eşiği değiştirilmez.
+- Tam grid 8 (width,c) çifti x5 seed. 4096 korunur fakat yalnız kabul kapıları geçildiğinde çalışır. CPU'da olağanüstü süre gerekirse çalışmayanlar planlı/başlatılmadı olarak raporlanır.
