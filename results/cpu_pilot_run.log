@@ -1,1 +1,7 @@
 A
+A {'r2': 0.9962726259914386, 'acc': 0.97927, 'mse': 5.127875366409973e-05} {'r2': 0.9970964944886292, 'acc': 0.984, 'mse': 5.06248576866473e-05}
+B1
+neural-drm-phase0/src/decision/trainer.py:282: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  kb = torch.as_tensor(keys[start : start + batch], device=device)
+B1 valid {'r2': 0.9913912745726303, 'acc': 0.9673, 'mse': 0.00011843316756998597} wrong {'random': {'r2': 0.9860962006878857, 'acc': 0.95091}, 'h1': {'r2': 0.9882587325149831, 'acc': 0.96965}, 'h2': {'r2': 0.9900828755844181, 'acc': 0.96975}} accepted True
+B2

@@ -1,0 +1,14 @@
+{
+  "label": "INCONCLUSIVE",
+  "rule": null,
+  "reason": "No accepted B; DEAD_CAPACITY requires a completed ladder and A+C acceptance. ladder_complete=True a_ok=False c_ok=False",
+  "numbers": {
+    "a_cost_gpu_hours": 0.0,
+    "c_min_n": null,
+    "c_gpu_hours": null,
+    "b_min_finetune_n": null,
+    "b_finetune_gpu_hours": null,
+    "b_over_c_cost_ratio": null,
+    "key_recovery_success": null
+  }
+}

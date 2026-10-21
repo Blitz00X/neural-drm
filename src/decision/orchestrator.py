@@ -466,7 +466,7 @@ def run_c_cost(cfg: dict, store: Store, octaves: int) -> dict:
     width = cfg["widths"][0]
 
     per_seed = []
-    for seed in cfg["seeds"]:
+    for seed in cfg.get("c_cost_seeds", cfg["seeds"]):
         rows = []
         cumulative = 0.0
         min_n = None

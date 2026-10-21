@@ -1,0 +1,33 @@
+{
+  "profile": "smoke",
+  "octaves_primary": 8,
+  "octaves_fallback": 4,
+  "widths": [32],
+  "step_ladder": [20],
+  "param_match_factor": 1.4142,
+  "seeds": [0, 1],
+  "batch": 16,
+  "lr": 0.001,
+  "depth": 2,
+  "train_size": 256,
+  "val_size": 64,
+  "test_size": 500,
+  "oracle_size": 500,
+  "threads": 2,
+  "device": "cpu",
+  "budget_gpu_hours": 0.1,
+  "full_width_ladder": true,
+  "c_cost_seeds": [0],
+  "attack": {
+    "finetune_sample_sizes": [10, 100],
+    "finetune_steps": 10,
+    "finetune_lrs": [0.001],
+    "distill_lrs": [0.001],
+    "distill_step_ladder": [20],
+    "key_oracle_n": 50,
+    "key_restarts": 2,
+    "key_steps": 10,
+    "hamming_repeats": 1,
+    "hamming_test_n": 100
+  }
+}

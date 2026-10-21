@@ -1,0 +1,9 @@
+{
+  "python": "3.11.15",
+  "torch": "2.14.1+cpu",
+  "numpy": "2.4.6",
+  "cuda_available": false,
+  "gpu": null,
+  "gpu_memory_gb": null,
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39"
+}

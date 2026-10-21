@@ -1,0 +1,14 @@
+{
+  "gpu_seconds": 530.1459454629803,
+  "units": {
+    "A_w256_s20000_seed0_c8": {
+      "status": "finished",
+      "gpu_seconds": 299.17990833194926
+    },
+    "B1_w256_s20000_seed0_c8": {
+      "status": "finished",
+      "gpu_seconds": 230.96603713103104
+    }
+  },
+  "decisions": {}
+}

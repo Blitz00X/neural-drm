@@ -101,7 +101,9 @@ def main() -> None:
             ladder, accepted = run_ladder(cfg, store, octaves)
             store.state["decisions"]["ladder"] = ladder
             store.state["decisions"]["accepted"] = accepted
-            store.state["decisions"]["ladder_complete"] = True
+            store.state["decisions"]["ladder_complete"] = bool(
+                accepted is not None or cfg.get("full_width_ladder", True)
+            )
             store.save_state()
         else:
             ladder = _load_state(store, "ladder", [])

@@ -199,6 +199,8 @@ def write_verdict(summary: dict, verdict: dict, path: Path) -> None:
     n = verdict.get("numbers", {})
     c = summary.get("c") or {}
     budget = summary.get("budget") or {}
+    device = (summary.get("config") or {}).get("device", "cuda")
+    unit = "CPU" if device == "cpu" else "GPU"
     lines = [
         f"VERDICT: {verdict['label']}",
         "",
@@ -213,7 +215,7 @@ def write_verdict(summary: dict, verdict: dict, path: Path) -> None:
         f"| C GPU-saat | {_fmt(c.get('gpu_hours'), 3)} |",
         f"| B/C maliyet oranı | {_fmt(n.get('b_over_c_cost_ratio'), 3)} |",
         f"| Anahtar kurtarma | {'başarılı' if n.get('key_recovery_success') else 'başarısız'} |",
-        f"| Harcanan GPU-saati | {_fmt(budget.get('gpu_hours'), 2)} / {_fmt(budget.get('limit_hours'), 0)} |",
+        f"| Harcanan {unit}-saati | {_fmt(budget.get('gpu_hours'), 2)} / {_fmt(budget.get('limit_hours'), 0)} |",
         "",
         "**Gerekçe (3 satır).** "
         + _rationale(summary, verdict),
@@ -276,14 +278,22 @@ def _rationale(summary: dict, verdict: dict) -> str:
 
 
 def _limitations(summary: dict) -> str:
-    return (
+    device = (summary.get("config") or {}).get("device", "cuda")
+    base = (
         "Bu bir oyuncak prosedürel dünya fonksiyonudur; gerçek oyun motoru, "
         "render hattı veya ticari DRM değildir. Tehdit modeli belleği okuyan "
         "T4 saldırganını kapsamaz; oracle analitik f'dir (en güçlü saldırgan). "
-        "GPU-saatleri tek bir GTX 1650 Ti'de ölçüldü, T4/A100'e genellenemez. "
         "3 tohum küçük bir örneklemdir; ölçülmeyen hücreler silinmedi, "
         "'yok' olarak işaretlendi."
     )
+    if device == "cpu":
+        return base + (
+            " Bu koşu, NVIDIA sürücüsünün 19 Ekim'de kernel seviyesinde çökmesi "
+            "nedeniyle CPU'da yapıldı; GPU-saati tüketilmedi (0). C maliyeti "
+            "CPU'da 1 saatten azsa GPU'da da azdır; CAPPED yönü bu nedenle daha "
+            "güçlüdür. Sayılar GTX 1650 Ti GPU'suna değil, bu CPU'ya aittir."
+        )
+    return base + " GPU-saatleri tek bir GTX 1650 Ti'de ölçüldü, T4/A100'e genellenemez."
 
 
 def _next_step(summary: dict, verdict: dict) -> str:

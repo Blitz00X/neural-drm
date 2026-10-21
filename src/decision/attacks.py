@@ -164,7 +164,8 @@ def finetune_curve(
         for t in trials:
             del t["_model"], t["_trainable"]
         del trials, best
-        torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         if min_n is not None:
             break
 
@@ -368,7 +369,8 @@ def distill_ladder(
         for t in trials:
             del t["_model"]
         del trials, best
-        torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         if success:
             min_n = n
             break
