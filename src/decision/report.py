@@ -261,7 +261,13 @@ def write_verdict(summary: dict, verdict: dict, path: Path) -> None:
     for key in sorted(seeds):
         row = seeds[key]
         ft = row.get("finetune") or {}
-        per_seed.append(_fmt(ft.get("min_n")))
+        mn = ft.get("min_n")
+        if mn is None:
+            per_seed.append("yok")
+        else:
+            hit = next((r for r in ft.get("rows", []) if r.get("n") == mn), {})
+            nh = hit.get("n_high_fidelity_keys")
+            per_seed.append(f"{mn} ({nh}/6)" if nh is not None else str(mn))
         best = (row.get("key_recovery") or {}).get("best") or {}
         h = best.get("hamming_to_secret")
         if h is not None:
@@ -347,7 +353,8 @@ def _rationale(summary: dict, verdict: dict) -> str:
         unit = "CPU" if device == "cpu" else "GPU"
         return (
             "B2 w=256'da 3/3 tohumda kabul edildi; fine-tune tohumların 1'inde "
-            "10000, 1'inde 100000 örnekte açıldı, 1'inde hiç açılmadı; anahtar "
+            "10000 (5/6 anahtar), 1'inde 100000 (5/6) örnekte açıldı, 1'inde hiç "
+            "açılmadı; anahtar "
             "kurtarma 20 başlangıçta başarısız oldu. Yani B, kural 2 ve 3'ten "
             "kurtuldu; ancak ayrıcalıklı Hamming taraması seed 0'da 50-53 bit "
             "uzakta R²≈0.95-0.97 veren yanlış anahtarlar buldu (kapı tek nokta "
