@@ -195,6 +195,8 @@ def _numbers(summary: dict, rung: dict | None, seeds: list[int] | None = None) -
     out = {
         "a_cost_gpu_hours": 0.0,
         "c_min_n": c.get("min_n"),
+        "c_min_n_cost_hours": c.get("min_n_gpu_hours"),
+        "c_cheapest_n": c.get("cheapest_n", c.get("min_n")),
         "c_gpu_hours": c.get("gpu_hours"),
         "b_min_finetune_n": None,
         "b_finetune_gpu_hours": None,

@@ -33,3 +33,13 @@
 - Ön kontrol (2026-10-21): c=8 ile c=4 height alanları neredeyse aynı (100k noktada corr=0.9978, kalan std=0.0108; toplam std=0.117). Oktav genliği 0.5^i olduğu için c=8 "daha zor görev" kolu fiilen çalışmıyor; birincil görev yine de spec gereği c=8'de kalacak, bu bir sınırlama olarak raporlanacak.
 - Ön kontrol (2026-10-21): ×1.4142 parametre-eşit kuralı B1'de A'nın 1.05 katı, B2'de 256'da 1.51, 512'de 1.25, 1024'te 1.12 katı parametre veriyor (FiLM/anahtar kodlayıcı ek yükü). B2 lehine bu avantaj, "B kapasite yüzünden düştü" yorumunu muhafazakâr yapar; gerçek parametre sayıları results'a yazılacak.
 - Ön kontrol (2026-10-21): `scripts/preflight.py` yedi etiketin tamamını sentetik özetlerle doğruladı; karar fonksiyonu torch'suz çalışıyor.
+
+## Karar koşusu sonrası (2026-10-21)
+
+- NVIDIA sürücüsü 19 Ekim'de kernel seviyesinde çökmüş; 21 Ekim'de CUDA context açılıyor ama `cudaSetDevice` ve 8 float'lık ayırma bile OOM veriyor. Sürücü sürümleri (580.178.04) uyumlu, GPU 3.7 GB boş; reboot gerekli, sudo yok. Bu nedenle karar koşusu CPU'da yapıldı; GPU-saati tüketimi 0, CPU süresi 1.91 saat. Bu bir donanım sapmasıdır; eşikler ve verdict kuralları değiştirilmedi.
+- CPU koşusu spec'in ilk merdiven basamağı olan w=256'da yapıldı; B kabul edildiği için merdiven orada durdu. Oktav kapısı w=256'da koşuldu (spec w=1024 ister); C w=256'da yüksek fidelity'ye ulaştı, c=8 korundu. Üst genişlik 512 "mümkünse" maddesi CPU bütçesi nedeniyle koşulmadı.
+- B2 w=256/20k'da 3/3 tohumda kabul edildi (valid R²≈0.995/acc≈0.980; random/h1/h2 hepsi yüksek). B1 2/3 kaldı: seed 1 random acc 0.9495 ile eşiğin hemen altında. Saldırılar 3/3 kabul eden B2 üzerinde koşuldu; B1 elenmedi, yalnızca saldırı örneklemi B2 oldu.
+- B2 fine-tune min n tohum sırasıyla 10000 / 100000 / yok; 10000 ve 100000 bypass'ları 5/6 anahtarla sınırlı. Anahtar kurtarma 20 başlangıçta başarısız (en iyi Hamming 29). Kural 2 ve 3 tetiklenmedi.
+- C maliyeti iki şekilde raporlandı: min n=10000 için kümülatif 0.931 CPU-saat (n=100 ve 1000 başarısızlıkları dahil); en ucuz protokol n=100000 için 0.143 CPU-saat. Kural 4 eşiği en ucuz maliyetle karşılaştırıldı; ikisi de 1 GPU-saatinin altında. B/C oranı en ucuz C ile 0.571.
+- Ayrıcalıklı Hamming taraması seed 0'da d=50-53 aralığında yanlış anahtarların f'ye R²≈0.97/acc≈0.97 verdiğini gösterdi; yani öğrenilen kapı tek bir anahtar değil, bir bölge. Gradyan anahtar kurtarma bu bölgeyi bulamadı. Bu bulgu ayrıcalıklıdır ve DEAD_KEY kuralını tetiklemez, ama anahtarın kriptografik bir sır olmadığını gösterir.
+- Sonuç etiketi CAPPED (kural 4). Eşikler, verdict_rules.md ve merdiven adımları sonuç görüldükten sonra değiştirilmedi.

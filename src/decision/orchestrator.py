@@ -563,16 +563,24 @@ def run_c_cost(cfg: dict, store: Store, octaves: int) -> dict:
             "gate_rows": gate_rows,
             "note": "C did not reach high fidelity at any tested width/budget.",
         }
-    best = min(candidates, key=lambda c: c["gpu_seconds"])
+    cheapest = min(candidates, key=lambda c: c["gpu_seconds"])
+    ladder_candidates = [c for c in candidates if c.get("rows")]
+    min_n_cand = (
+        min(ladder_candidates, key=lambda c: (c["min_n"], c["gpu_seconds"]))
+        if ladder_candidates else cheapest
+    )
     return {
         "success": True,
-        "min_n": best["min_n"],
-        "gpu_hours": best["gpu_seconds"] / 3600.0,
-        "width": best["width"],
-        "gpu_seconds": best["gpu_seconds"],
-        "seed": best["seed"],
+        "min_n": min_n_cand["min_n"],
+        "min_n_gpu_hours": min_n_cand["gpu_seconds"] / 3600.0,
+        "cheapest_n": cheapest["min_n"],
+        "cheapest_gpu_hours": cheapest["gpu_seconds"] / 3600.0,
+        "gpu_hours": cheapest["gpu_seconds"] / 3600.0,
+        "width": cheapest["width"],
+        "gpu_seconds": cheapest["gpu_seconds"],
+        "seed": min_n_cand["seed"],
         "per_seed": per_seed,
-        "rows": best["rows"],
+        "rows": min_n_cand["rows"],
         "gate_rows": [
             {
                 "lr": r.get("lr"),

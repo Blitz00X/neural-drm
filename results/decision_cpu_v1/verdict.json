@@ -1,0 +1,16 @@
+{
+  "label": "CAPPED",
+  "rule": 4,
+  "reason": "B survived fine-tune and key recovery, but C reaches high fidelity in under one GPU-hour; the protection is capped by task learnability.",
+  "numbers": {
+    "a_cost_gpu_hours": 0.0,
+    "c_min_n": 10000,
+    "c_min_n_cost_hours": 0.931190201226984,
+    "c_cheapest_n": 100000,
+    "c_gpu_hours": 0.14322495143639066,
+    "b_min_finetune_n": 10000,
+    "b_finetune_gpu_hours": 0.08181760639168917,
+    "b_over_c_cost_ratio": 0.5712524638420015,
+    "key_recovery_success": false
+  }
+}

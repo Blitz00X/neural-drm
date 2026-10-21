@@ -1,0 +1,263 @@
+{
+  "oracle_n": 1000,
+  "restarts": 20,
+  "steps": 1000,
+  "rows": [
+    {
+      "restart": 0,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 18.178037837031297
+    },
+    {
+      "restart": 1,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 15.808599753014278
+    },
+    {
+      "restart": 2,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.46741593698971
+    },
+    {
+      "restart": 3,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.519482194038574
+    },
+    {
+      "restart": 4,
+      "continuous_loss": 15.1354341506958,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.259000279009342
+    },
+    {
+      "restart": 5,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.401406572025735
+    },
+    {
+      "restart": 6,
+      "continuous_loss": 0.09380152821540833,
+      "test": {
+        "r2": -1.895272571678233,
+        "acc": 0.18492,
+        "mse": 0.03954513018501747
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.764792099012993
+    },
+    {
+      "restart": 7,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.657333176990505
+    },
+    {
+      "restart": 8,
+      "continuous_loss": 15.135430335998535,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 15.521233827981632
+    },
+    {
+      "restart": 9,
+      "continuous_loss": 15.238260269165039,
+      "test": {
+        "r2": -3.478002539486221,
+        "acc": 0.17775,
+        "mse": 0.06116287465472582
+      },
+      "success": false,
+      "hamming_to_secret": 36,
+      "gpu_seconds": 14.862345425994135
+    },
+    {
+      "restart": 10,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.487220112001523
+    },
+    {
+      "restart": 11,
+      "continuous_loss": 15.238260269165039,
+      "test": {
+        "r2": -3.478002539486221,
+        "acc": 0.17775,
+        "mse": 0.06116287465472582
+      },
+      "success": false,
+      "hamming_to_secret": 36,
+      "gpu_seconds": 14.562056194990873
+    },
+    {
+      "restart": 12,
+      "continuous_loss": 16.568134307861328,
+      "test": {
+        "r2": -3.6186904134192828,
+        "acc": 0.17944,
+        "mse": 0.06308446239902286
+      },
+      "success": false,
+      "hamming_to_secret": 35,
+      "gpu_seconds": 14.685655581997707
+    },
+    {
+      "restart": 13,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.245650711993221
+    },
+    {
+      "restart": 14,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.394656627962831
+    },
+    {
+      "restart": 15,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.007100151036866
+    },
+    {
+      "restart": 16,
+      "continuous_loss": 15.200529098510742,
+      "test": {
+        "r2": -3.4947930958935105,
+        "acc": 0.17779,
+        "mse": 0.06139220875801554
+      },
+      "success": false,
+      "hamming_to_secret": 38,
+      "gpu_seconds": 14.515840140986256
+    },
+    {
+      "restart": 17,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.37381512101274
+    },
+    {
+      "restart": 18,
+      "continuous_loss": 16.26133155822754,
+      "test": {
+        "r2": -3.6027942957967998,
+        "acc": 0.18076,
+        "mse": 0.06286734500324928
+      },
+      "success": false,
+      "hamming_to_secret": 39,
+      "gpu_seconds": 14.604511476005428
+    },
+    {
+      "restart": 19,
+      "continuous_loss": 15.135429382324219,
+      "test": {
+        "r2": -3.553804183769768,
+        "acc": 0.17889,
+        "mse": 0.06219821271607239
+      },
+      "success": false,
+      "hamming_to_secret": 40,
+      "gpu_seconds": 14.72080933698453
+    }
+  ],
+  "success": false,
+  "best": {
+    "restart": 6,
+    "continuous_loss": 0.09380152821540833,
+    "test": {
+      "r2": -1.895272571678233,
+      "acc": 0.18492,
+      "mse": 0.03954513018501747
+    },
+    "success": false,
+    "hamming_to_secret": 40,
+    "gpu_seconds": 14.764792099012993
+  },
+  "gpu_seconds": 296.0369625570602,
+  "warning": "Recovering one accepted key does not by itself demonstrate a six-key bypass; the verdict rule treats it separately.",
+  "unit": "ATK_key_recovery_B2_w256_s20000_seed2_c8"
+}

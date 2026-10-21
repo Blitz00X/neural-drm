@@ -95,3 +95,23 @@ The run is append-only: rerunning skips completed units and never overwrites a
 failed one.  A crash is resumed by rerunning the same command.  `VERDICT:
 INCONCLUSIVE` is written when the budget or a missing measurement prevents an
 ordered rule from matching.
+
+### CPU fallback run (2026-10-21)
+
+The installed NVIDIA driver had crashed at kernel level on 19 Oct; CUDA could
+create a context but not allocate even a few bytes (`cudaSetDevice` returned
+OOM while `nvidia-smi` reported 3.7 GiB free).  A reboot would be required and
+no passwordless sudo was available.  The frozen protocol was therefore run on
+CPU at the first ladder rung (w=256), which is where the ladder stops because
+B was accepted:
+
+```bash
+python run_decision.py --config configs/decision_cpu.json \
+  --output results/decision_cpu_v1 --phase all
+```
+
+Result: `VERDICT: CAPPED`.  Deviations are recorded in `DECISIONS.md` and in the
+limitations paragraph of `VERDICT.md`: CPU instead of GPU (0 GPU-hours), the
+octave gate at w=256 instead of w=1024, and no upper 512 run.  The GPU path
+(`configs/decision.json`) is unchanged and ready for a machine with a working
+driver; `results/pilot_preview_256/` is the one-seed preview, not a verdict.
