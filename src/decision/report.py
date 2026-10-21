@@ -233,9 +233,9 @@ def _rationale(summary: dict, verdict: dict) -> str:
         return (
             "A ve C kabul edildi; merdivendeki hiçbir genişlik/bütçe/parametre-eşit "
             "kombinasyonunda B1 veya B2, yanlış anahtar stratasında decoy g'ye "
-            "yüksek fidelity ile eşleşemedi. Bu, süperpozisyonun kapasite değil "
-            "anahtar koşullama problemi olduğunu gösteriyor. Etiket yalnızca bu "
-            "oyuncak kurulum için geçerlidir."
+            "yüksek fidelity ile eşleşemedi. Bu kurulumda B ya kapasite ya da "
+            "anahtar koşullama optimizasyonu nedeniyle düştü; ikisini ayırmak "
+            "için ek tanı gerekir. Etiket yalnızca bu oyuncak kurulum içindir."
         )
     if label == "DEAD_FINETUNE":
         return (

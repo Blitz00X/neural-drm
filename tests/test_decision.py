@@ -110,7 +110,7 @@ def _attacks(min_ns, kr=False):
                     {"n": n, "cumulative_gpu_seconds": 3600.0, "test_keys": []}
                 ],
             },
-            "key_recovery": {"success": kr},
+            "key_recovery": {"success": kr, "rows": [{"restart": 0}]},
         }
         for i, n in enumerate(min_ns)
     }
@@ -124,6 +124,7 @@ class TestVerdict(unittest.TestCase):
             "a": {"accepted": True},
             "c": {"success": True, "gpu_hours": 2.0, "min_n": 10000},
             "ladder": [],
+            "ladder_complete": True,
             "attacks": None,
         }
         self.assertEqual(compute_verdict(summary)["label"], "DEAD_CAPACITY")
