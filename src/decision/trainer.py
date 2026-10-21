@@ -129,8 +129,10 @@ def sample_keys(
     )
     draw = torch.rand(batch, device=device, generator=gen)
     invalid = ~valid
-    h1 = invalid & (draw < 0.5)
-    h2 = invalid & (draw >= 0.5)
+    # Among the 50% invalid rows: 50% uniform random, 25% Hamming-1,
+    # 25% Hamming-2, i.e. 25/12.5/12.5 of the whole batch.
+    h1 = invalid & (draw >= 0.50) & (draw < 0.75)
+    h2 = invalid & (draw >= 0.75)
     for mask, distance in ((h1, 1), (h2, 2)):
         idx = mask.nonzero(as_tuple=True)[0]
         if len(idx) == 0:

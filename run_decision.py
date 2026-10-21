@@ -93,7 +93,9 @@ def main() -> None:
         else:
             c_cost = _load_state(store, "c_cost")
             if c_cost is None:
-                raise RuntimeError("run --phase c first")
+                # A ladder-only resume is allowed; the verdict stays
+                # INCONCLUSIVE until the C phase supplies the rule-4 ceiling.
+                c_cost = {"success": False, "min_n": None, "gpu_hours": None}
 
         if args.phase in ("all", "ladder"):
             ladder, accepted = run_ladder(cfg, store, octaves)

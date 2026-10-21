@@ -23,7 +23,9 @@ def _valid_row(row: dict) -> bool:
 
 def _attack_rows(summary: dict, rung: dict) -> dict[int, dict]:
     key = (rung["arm"], rung["width"], rung["steps"])
-    attacks = summary.get("attacks", {})
+    attacks = summary.get("attacks") or {}
+    if not attacks:
+        return {}
     for block in (attacks.get("primary"), attacks.get("upper")):
         if not block:
             continue

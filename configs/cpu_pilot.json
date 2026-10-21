@@ -1,0 +1,31 @@
+{
+  "profile": "cpu_pilot_256",
+  "octaves_primary": 8,
+  "octaves_fallback": 4,
+  "widths": [256],
+  "step_ladder": [20000],
+  "param_match_factor": 1.0,
+  "seeds": [0],
+  "batch": 512,
+  "lr": 0.001,
+  "depth": 4,
+  "train_size": 65536,
+  "val_size": 4096,
+  "test_size": 100000,
+  "oracle_size": 100000,
+  "threads": 6,
+  "device": "cpu",
+  "budget_gpu_hours": 2.0,
+  "attack": {
+    "finetune_sample_sizes": [100, 1000, 10000, 100000],
+    "finetune_steps": 2000,
+    "finetune_lrs": [0.0001, 0.001, 0.01],
+    "distill_lrs": [0.001],
+    "distill_step_ladder": [20000],
+    "key_oracle_n": 1000,
+    "key_restarts": 20,
+    "key_steps": 1000,
+    "hamming_repeats": 2,
+    "hamming_test_n": 10000
+  }
+}
