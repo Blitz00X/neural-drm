@@ -30,3 +30,6 @@
 - Oktav kapısı: c=8'de C, w=1024, n=100000, 20k->60k bütçe merdiveni ve 3 LR ile denenir. Başarısızsa c=4'e düşülür; bu karar `state.json` ve bu dosyaya yazılır. Eşikler değişmez.
 - GPU-saat, tamamlanan birimlerin senkronize duvar saatidir; indirme ve kurulum süresi sayılmaz. 8 saat aşılırsa koşu durur ve eldeki kanıtla raporlanır.
 - Saldırılar yalnızca kabul edilen B modellerine ve yalnızca anahtarı bilmeyen prosedürlerle uygulanır; Hamming eğrisi ayrıcalıklı bir teşhistir ve etikete girmez.
+- Ön kontrol (2026-10-21): c=8 ile c=4 height alanları neredeyse aynı (100k noktada corr=0.9978, kalan std=0.0108; toplam std=0.117). Oktav genliği 0.5^i olduğu için c=8 "daha zor görev" kolu fiilen çalışmıyor; birincil görev yine de spec gereği c=8'de kalacak, bu bir sınırlama olarak raporlanacak.
+- Ön kontrol (2026-10-21): ×1.4142 parametre-eşit kuralı B1'de A'nın 1.05 katı, B2'de 256'da 1.51, 512'de 1.25, 1024'te 1.12 katı parametre veriyor (FiLM/anahtar kodlayıcı ek yükü). B2 lehine bu avantaj, "B kapasite yüzünden düştü" yorumunu muhafazakâr yapar; gerçek parametre sayıları results'a yazılacak.
+- Ön kontrol (2026-10-21): `scripts/preflight.py` yedi etiketin tamamını sentetik özetlerle doğruladı; karar fonksiyonu torch'suz çalışıyor.
