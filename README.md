@@ -115,3 +115,25 @@ limitations paragraph of `VERDICT.md`: CPU instead of GPU (0 GPU-hours), the
 octave gate at w=256 instead of w=1024, and no upper 512 run.  The GPU path
 (`configs/decision.json`) is unchanged and ready for a machine with a working
 driver; `results/pilot_preview_256/` is the one-seed preview, not a verdict.
+
+## Expansive chained function (goal-loop, `VERDICT_EXPANSIVE.md`)
+
+Tests whether a keyed, integer-only, expansive cellular automaton makes
+black-box distillation unusable over long autonomous rollouts.  The state is an
+8x8 binary grid; each cell's next bit is a keyed lookup of its k x k
+neighbourhood.  k=3 is a 512-bit control; k=4 is 65,536 bits; k=5 is 33.5M bits.
+
+```bash
+python experiments/run_expansive.py --config configs/expansive.json
+python experiments/analyze_expansive.py
+head -1 VERDICT_EXPANSIVE.md
+```
+
+- `hypothesis.md` and `kill_rule.md` were frozen before the confirmatory sweep.
+- `results/expansive_v1/runs/`: one JSON per (k, n, seed), with one-step accuracy,
+  T95, distribution TV, exact-state accuracy and timings.
+- `results/expansive_v1/calibration.json`: pre-freeze calibration table (not
+  confirmatory evidence).
+- `figures/expansive_*.png`: T95 and one-step accuracy vs sample budget.
+
+The `.goal/` directory holds the goal-loop manifest and an append-only log.

@@ -1,0 +1,72 @@
+{
+  "type": "pre_freeze_calibration",
+  "created": "2026-10-21T21:08:30",
+  "note": "Calibration only; not confirmatory evidence. Numbers from the calibration logs. The confirmatory run is k=3 n in {3k,10k,30k}, 3 seeds, 2000 steps, 64 channels.",
+  "rows": [
+    {
+      "k": 3,
+      "rule_bits": 512,
+      "n": 10000,
+      "steps": 2000,
+      "channels": 32,
+      "one_step_accuracy": 0.9963,
+      "t95": 4,
+      "note": "alignment-fixed calibration"
+    },
+    {
+      "k": 3,
+      "rule_bits": 512,
+      "n": 10000,
+      "steps": 5000,
+      "channels": 32,
+      "one_step_accuracy": 1.0,
+      "t95": 65,
+      "note": "full horizon 64; T95=65 means never below threshold"
+    },
+    {
+      "k": 4,
+      "rule_bits": 65536,
+      "n": 30000,
+      "steps": 1200,
+      "channels": 128,
+      "one_step_accuracy": 0.5381,
+      "t95": 1
+    },
+    {
+      "k": 4,
+      "rule_bits": 65536,
+      "n": 30000,
+      "steps": 1500,
+      "channels": 256,
+      "one_step_accuracy": 0.5545,
+      "t95": 1
+    },
+    {
+      "k": 4,
+      "rule_bits": 65536,
+      "n": 100000,
+      "steps": 4000,
+      "channels": 256,
+      "one_step_accuracy": 0.8849,
+      "t95": 1
+    },
+    {
+      "k": 5,
+      "rule_bits": 33554432,
+      "n": 100000,
+      "steps": 3000,
+      "channels": 32,
+      "one_step_accuracy": 0.4989,
+      "t95": 1
+    },
+    {
+      "k": 5,
+      "rule_bits": 33554432,
+      "n": 300000,
+      "steps": 4000,
+      "channels": 32,
+      "one_step_accuracy": 0.5001,
+      "t95": 1
+    }
+  ]
+}
