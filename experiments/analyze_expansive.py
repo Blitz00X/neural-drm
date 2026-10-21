@@ -164,10 +164,24 @@ def figure_acc(cfg: dict, groups: dict, path: Path) -> None:
 
 def write_verdict(cfg: dict, groups: dict, verdict: dict, path: Path) -> None:
     rows = sorted(groups.values(), key=lambda v: (v["k"], v["n"]))
+    reason_tr = {
+        "POLYNOMIAL": (
+            "Aynı örnek bütçesinde kural ya tam öğreniliyor (T95=ufuk) ya da bir "
+            "adım hatası yörüngeyi hemen öldürüyor. Geçiş, T'ye bağlı üstel bir "
+            "maliyet değil, keskin bir öğrenilebilirlik eşiği."
+        ),
+        "EXPONENTIAL": (
+            "T95, ln n ile ölçülebilir biçimde büyüyor; sabit T için gereken örnek "
+            "sayısı üstel."
+        ),
+        "INCONCLUSIVE": (
+            "Ön koşul veya ölçüm aralığı, üstel-T iddiasını ayırmaya yetmiyor."
+        ),
+    }.get(verdict["label"], verdict["reason"])
     lines = [
         f"VERDICT: {verdict['label']}",
         "",
-        f"Karar: {verdict['reason']}",
+        f"Karar: {reason_tr}",
         "",
         "| k | n | one-step acc | T95 mean (min–max) | TV | exact-state |",
         "|---|---:|---:|---:|---:|---:|",
@@ -180,18 +194,21 @@ def write_verdict(cfg: dict, groups: dict, verdict: dict, path: Path) -> None:
         )
     lines += [
         "",
-        f"Kill kuralı: {cfg.get('kill_rule', 'frozen in kill_rule.md')}",
+        f"Kill kuralı: `kill_rule.md` (dondurulmuş).",
         "",
         "**Sınırlamalar.** Tek anahtar, 3 tohum, 8x8 ikili CA, CNN öğrenci, "
         "T_max=" + str(cfg["rollout_T"]) + ". Ölçüt **özerk yörünge** doğruluğudur; "
-        "dağılım TV'si ayrıca raporlanır. Öğrenciye kod/ağırlık verilmedi; "
-        "sadece I/O örnekleri verildi. Yüksek k'da öğrenci tek adımı öğrenemiyorsa "
-        "bu, hata birikiminden önce **öğrenilebilirlik** bariyeridir.",
+        "dağılım TV'si ayrıca raporlanır. Öğrenciye kod/ağırlık verilmedi; sadece "
+        "I/O örnekleri verildi. n=3000'de 3 tohumun 2'si tam, 1'i kırılgan; eşik "
+        "tohum/optimizasyona bağlı. k=4 (65k-bit) en iyi CPU koşusunda tek adım "
+        "%88.5, k=5 %50; yüksek tarifte darboğaz hata birikimi değil "
+        "**öğrenilebilirlik**.",
         "",
-        "**Sonraki adım.** k=4'te bir adım ≥0.99'a ulaşılırsa T95~log n eğimini "
-        "ve çok adımlı öğrenciyi test et; ulaşılamazsa görev zorluğu/CNN kapasitesi "
-        "ayrıştırılmalı. k=5 33M-bit kuralı, öğrenilebilirlik tavanını gösteren "
-        "üst sınır olarak tutuldu.",
+        "**Sonraki adım.** CA sonlu bir Boolean kuralı olduğu için öğrenme ya tam "
+        "ya hiç; üstel-T eğrisi için sürekli/smooth fixed-point kaotik harita "
+        "(keyed perturbation) gerekir. Aksi halde bu negatif sonuç bu formda "
+        "geçerlidir; k=5 33M-bit kuralı öğrenilebilirlik tavanını gösteren üst "
+        "sınır olarak tutuldu.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

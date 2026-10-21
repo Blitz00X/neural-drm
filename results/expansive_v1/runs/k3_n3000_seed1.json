@@ -1,0 +1,15 @@
+{
+  "k": 3,
+  "n": 3000,
+  "seed": 1,
+  "one_step_accuracy": 1.0,
+  "one_step_bce": 0.009197656996548176,
+  "t95": 129,
+  "distribution_tv": 0.0,
+  "exact_state_accuracy": 1.0,
+  "empirical_lambda": 0.38396984001537254,
+  "training_seconds": 143.91520762443542,
+  "total_seconds": 144.2908136844635,
+  "channels": 64,
+  "steps": 2000
+}

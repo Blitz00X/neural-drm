@@ -1,0 +1,79 @@
+{
+  "config": {
+    "key": 20261021,
+    "control_k": 3,
+    "main_k": 3,
+    "sizes": [
+      3000,
+      10000,
+      30000
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "train_steps": 2000,
+    "batch": 512,
+    "lr": 0.001,
+    "channels": {
+      "3": 64
+    },
+    "depth": 2,
+    "eval_pairs": 3000,
+    "rollout_states": 40,
+    "rollout_T": 128,
+    "threshold": 0.95,
+    "out": "results/expansive_v1",
+    "ks": [
+      3
+    ]
+  },
+  "groups": {
+    "k3_n10000": {
+      "k": 3,
+      "n": 10000,
+      "seeds": 3,
+      "acc": 1.0,
+      "acc_std": 0.0,
+      "t95": 129.0,
+      "t95_std": 0.0,
+      "t95_min": 129,
+      "t95_max": 129,
+      "tv": 0.0,
+      "exact_state_accuracy": 1.0
+    },
+    "k3_n30000": {
+      "k": 3,
+      "n": 30000,
+      "seeds": 3,
+      "acc": 1.0,
+      "acc_std": 0.0,
+      "t95": 129.0,
+      "t95_std": 0.0,
+      "t95_min": 129,
+      "t95_max": 129,
+      "tv": 0.0,
+      "exact_state_accuracy": 1.0
+    },
+    "k3_n3000": {
+      "k": 3,
+      "n": 3000,
+      "seeds": 3,
+      "acc": 0.9987465277777777,
+      "acc_std": 0.0017726774167246293,
+      "t95": 87.0,
+      "t95_std": 59.39696961966999,
+      "t95_min": 3,
+      "t95_max": 129,
+      "tv": 0.00014546712239582593,
+      "exact_state_accuracy": 0.6731119791666668
+    }
+  },
+  "verdict": {
+    "label": "POLYNOMIAL",
+    "reason": "at n=3000 at least one seed survives the full 128-step horizon (T95 max=129), while the same n can fail at T95 min=3: the rule is either learned exactly or not, so the transition is a sharp learnability threshold, not an exponential-in-T cost",
+    "slope": null,
+    "r2": null
+  }
+}
