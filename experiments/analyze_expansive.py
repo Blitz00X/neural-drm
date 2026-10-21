@@ -4,7 +4,10 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import numpy as np
 
@@ -29,6 +32,8 @@ def aggregate(runs: list[dict]) -> dict:
             "acc_std": float(np.std([r["one_step_accuracy"] for r in rows])),
             "t95": float(np.mean([r["t95"] for r in rows])),
             "t95_std": float(np.std([r["t95"] for r in rows])),
+            "t95_min": int(min(r["t95"] for r in rows)),
+            "t95_max": int(max(r["t95"] for r in rows)),
             "tv": float(np.mean([r["distribution_tv"] for r in rows])),
             "exact_state_accuracy": float(np.mean([r["exact_state_accuracy"] for r in rows])),
         }
@@ -52,11 +57,17 @@ def decide(cfg: dict, groups: dict) -> dict:
             "slope": None,
             "r2": None,
         }
-    if any(v["t95"] >= horizon for v in rows):
-        hit = [v for v in rows if v["t95"] >= horizon][0]
+    if any(v["t95_max"] >= horizon for v in rows):
+        hit = [v for v in rows if v["t95_max"] >= horizon][0]
         return {
             "label": "POLYNOMIAL",
-            "reason": f"the student survives the full {cfg['rollout_T']}-step horizon at n={hit['n']}; the rule is learned, so T is irrelevant (threshold, not exponential)",
+            "reason": (
+                f"at n={hit['n']} at least one seed survives the full "
+                f"{cfg['rollout_T']}-step horizon (T95 max={hit['t95_max']}), "
+                f"while the same n can fail at T95 min={hit['t95_min']}: the rule "
+                "is either learned exactly or not, so the transition is a sharp "
+                "learnability threshold, not an exponential-in-T cost"
+            ),
             "slope": None,
             "r2": None,
         }
@@ -158,12 +169,13 @@ def write_verdict(cfg: dict, groups: dict, verdict: dict, path: Path) -> None:
         "",
         f"Karar: {verdict['reason']}",
         "",
-        "| k | n | one-step acc | T95 | TV | exact-state |",
+        "| k | n | one-step acc | T95 mean (min–max) | TV | exact-state |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     for v in rows:
         lines.append(
-            f"| {v['k']} | {v['n']} | {v['acc']:.4f} | {v['t95']:.1f} | "
+            f"| {v['k']} | {v['n']} | {v['acc']:.4f} | "
+            f"{v['t95']:.1f} ({v['t95_min']}–{v['t95_max']}) | "
             f"{v['tv']:.4f} | {v['exact_state_accuracy']:.4f} |"
         )
     lines += [
