@@ -67,3 +67,31 @@ licensed neural model. Validation chooses the learning rate; all six unauthorize
 keys must meet both .95 thresholds for fine-tune/ablation bypass success. Do not
 interpret low sensitivity, a good height score alone, an untested attack, or a
 budget-censored cost as a successful defense.
+
+## Decision experiment (phase 1, `VERDICT.md`)
+
+This is the preregistered single-decision run: one label, three attack families,
+an 8 GPU-hour cap.  The rules in `verdict_rules.md` were committed before the
+first run and must not be edited afterwards.
+
+```bash
+python run_decision.py --phase all
+# or resume a single phase: gate | ladder | c | attacks | report
+python run_decision.py --phase ladder
+```
+
+- `configs/decision.json`: widths 256/512/1024, budgets 20k/60k, 3 seeds,
+  c=8 primary with a c=4 fallback, 100k test points, 8 GPU-hour cap.
+- `results/decision_v1/units/`: one immutable JSON per unit (training run,
+  attack, C trial); `models/` holds checkpoints; `state.json` is the resume
+  ledger and the GPU-hour budget.
+- `results/decision_v1/summary.json`: the machine-readable evidence behind the
+  label; `verdict.json` is the rule evaluation.
+- `figures/decision_*.png`: fine-tune/distillation fidelity vs n, attacker cost,
+  Hamming leakage.
+- `VERDICT.md`: one Turkish page, first line `VERDICT: <label>`.
+
+The run is append-only: rerunning skips completed units and never overwrites a
+failed one.  A crash is resumed by rerunning the same command.  `VERDICT:
+INCONCLUSIVE` is written when the budget or a missing measurement prevents an
+ordered rule from matching.
