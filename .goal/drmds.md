@@ -126,3 +126,17 @@ boru hattı ve hizalama doğru; sorun kapasite/örnekleme.
 - Sonraki: CA sonlu Boolean kuralı olduğu için “ya tam ya hiç”; üstel-T eğrisi
   için sürekli/smooth fixed-point keyed kaotik harita gerekir. Aksi halde bu
   negatif sonuç bu formda geçerlidir.
+
+## Güncelleme — 2026-10-22 (smooth tent SONUÇ)
+
+- **VERDICT_TENT: INCONCLUSIVE**.
+- 3 tohum, n=10k/30k/100k, 256x2, 4k adım: one-step RMSE **4.56 / 4.00 / 4.64e-3**;
+  T95 (durum hatası >5%) **6 / 6 / 6** (min=max). Örnek sayısı lever’ı düz.
+- 512x3 + 12k adım: RMSE **9.4e-4**, T95 **8**. Yani T95 **compute/kapasite** ile
+  büyüyor, n ile değil. 128 adım için gereken hassasiyet ~1e-36.
+- Hata birikimi gerçek: %0.4 tek-adım hatası 6 adımda %5’i geçiyor; Lyapunov
+  tahminine yakın. Ama “üstel sample complexity” yok; maliyet hesaplama.
+- CA: POLYNOMIAL (keskin eşik). Tent: INCONCLUSIVE (compute-limited). İkisi de
+  “expansive + yüksek tarif = üstel distillation maliyeti” iddiasını desteklemiyor.
+- Sonraki: aynı n’de model boyutu/adım sayısını artırıp T95’in log(compute) ile
+  büyümesini ölç; ya da bu negatif sonucu bu formda kabul et.

@@ -10,3 +10,9 @@
 - 2026-10-21T21:27:25 analyze-and-verdict done: VERDICT_EXPANSIVE = POLYNOMIAL (threshold, not exponential).
 - 2026-10-21T21:27:25 audit done: tests/reproduce/runs/freeze checks pass; goal paused because multi-step at scale was not run.
 - 2026-10-22T13:00:14 CA goal paused/archived; new goal: smooth keyed 24-bit tent map.
+- 2026-10-22T13:10:49 tent-map-and-tests done: 4/4 tests pass.
+- 2026-10-22T13:10:49 tent-student-calibration done: RMSE 4.3e-3->3.4e-3, T95 5->6; 512x3/12k 9.4e-4/T95=8.
+- 2026-10-22T13:10:49 tent-sweep doing: n=10k/30k/100k, 3 seeds, 4k steps, 256 hidden.
+- 2026-10-22T13:14:29 tent-sweep done: 9/9 runs; T95 6/6/6, RMSE flat ~4e-3.
+- 2026-10-22T13:14:29 tent-verdict done: VERDICT_TENT = INCONCLUSIVE (compute-limited, sample lever flat).
+- 2026-10-22T13:14:29 tent-audit done: tests/reproduce/runs/freeze checks pass; goal paused on criterion 3.

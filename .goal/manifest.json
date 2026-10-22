@@ -1,10 +1,10 @@
 {
   "goal": "Test whether a smooth keyed fixed-point tent map yields a graded one-step error curve and exponential-in-T autonomous distillation cost, and produce a frozen-rule verdict.",
-  "status": "active",
+  "status": "paused",
   "created": "2026-10-22T13:00:14",
-  "updated": "2026-10-22T13:00:14",
+  "updated": "2026-10-22T13:14:29",
   "max_iterations": 20,
-  "iterations": 0,
+  "iterations": 6,
   "done_criteria": [
     "hypothesis_tent.md and kill_rule_tent.md are committed before the confirmatory sweep",
     "The exact 24-bit tent map is integer-only and deterministic; tests pass",
@@ -29,42 +29,47 @@
     {
       "id": 1,
       "name": "freeze-tent-hypothesis",
-      "status": "todo",
+      "status": "done",
       "verify": "test -f hypothesis_tent.md && test -f kill_rule_tent.md && git log --oneline -1"
     },
     {
       "id": 2,
       "name": "tent-map-and-tests",
-      "status": "todo",
+      "status": "done",
       "verify": "python -m unittest tests.test_tent.TestMap -v"
     },
     {
       "id": 3,
       "name": "tent-student-calibration",
-      "status": "todo",
+      "status": "done",
       "verify": "python -m unittest tests.test_tent.TestStudent -v && test -f results/tent_v1/calibration.json"
     },
     {
       "id": 4,
       "name": "tent-sweep",
-      "status": "todo",
+      "status": "done",
       "verify": "python experiments/run_tent.py --config configs/tent.json"
     },
     {
       "id": 5,
       "name": "tent-verdict",
-      "status": "todo",
+      "status": "done",
       "verify": "python experiments/analyze_tent.py && head -1 VERDICT_TENT.md"
     },
     {
       "id": 6,
       "name": "tent-audit",
-      "status": "todo",
+      "status": "done",
       "verify": "python -m unittest tests.test_tent -v && python experiments/analyze_tent.py"
     }
   ],
   "evidence": [
-    "CA verdict archived: POLYNOMIAL; smooth-map goal opened to test the continuous-error version."
+    "CA verdict archived: POLYNOMIAL; smooth-map goal opened to test the continuous-error version.",
+    "2026-10-22T13:10:49 tent calibration: RMSE 4.3e-3/2.9e-3/3.4e-3, T95 5/6/6; 512x3/12k RMSE 9.4e-4, T95=8. Tests 4/4.",
+    "2026-10-22T13:14:29 tent audit: 4/4 tests, 9 raw runs, analyze reproduces VERDICT: INCONCLUSIVE, freeze diff empty, summary matches.",
+    "2026-10-22T13:14:29 tent table: RMSE 4.56/4.00/4.64e-3; T95 6/6/6; 512x3/12k RMSE 9.4e-4/T95=8."
   ],
-  "blockers": []
+  "blockers": [
+    "Goal contract criterion 3 (one-step >=0.99 bit accuracy) is not met by the scalar-regression design; RMSE floor ~4e-3. Verdict INCONCLUSIVE: sample lever flat, compute/capacity is the lever."
+  ]
 }

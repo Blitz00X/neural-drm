@@ -1,0 +1,39 @@
+{
+  "type": "pre_freeze_calibration",
+  "created": "2026-10-22T13:10:49",
+  "note": "Kalibrasyon; onay sweep'i de\u011fil. 16-bit tent, tek anahtar, skaler T95 (>5% hata).",
+  "rows": [
+    {
+      "n": 10000,
+      "steps": 4000,
+      "hidden": 256,
+      "depth": 2,
+      "rmse": 0.00434,
+      "t95_state": 5
+    },
+    {
+      "n": 30000,
+      "steps": 6000,
+      "hidden": 256,
+      "depth": 2,
+      "rmse": 0.0029,
+      "t95_state": 6
+    },
+    {
+      "n": 100000,
+      "steps": 6000,
+      "hidden": 256,
+      "depth": 2,
+      "rmse": 0.00336,
+      "t95_state": 6
+    },
+    {
+      "n": 30000,
+      "steps": 12000,
+      "hidden": 512,
+      "depth": 3,
+      "rmse": 0.000944,
+      "t95_state": 8
+    }
+  ]
+}

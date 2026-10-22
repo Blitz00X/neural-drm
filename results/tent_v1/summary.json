@@ -1,0 +1,63 @@
+{
+  "config": {
+    "key": 20261022,
+    "sizes": [
+      10000,
+      30000,
+      100000
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "train_steps": 4000,
+    "batch": 512,
+    "lr": 0.001,
+    "hidden": 256,
+    "depth": 2,
+    "eval_pairs": 3000,
+    "rollout_states": 40,
+    "rollout_T": 128,
+    "threshold": 0.05,
+    "out": "results/tent_v1"
+  },
+  "groups": {
+    "100000": {
+      "n": 100000,
+      "seeds": 3,
+      "rmse": 0.004635149302581946,
+      "rmse_std": 0.0002211795003288452,
+      "t95": 6.0,
+      "t95_min": 6,
+      "t95_max": 6,
+      "grid": 0.7040694444444444
+    },
+    "10000": {
+      "n": 10000,
+      "seeds": 3,
+      "rmse": 0.004559760758032401,
+      "rmse_std": 0.0002836316119595286,
+      "t95": 6.0,
+      "t95_min": 6,
+      "t95_max": 6,
+      "grid": 0.7000902777777777
+    },
+    "30000": {
+      "n": 30000,
+      "seeds": 3,
+      "rmse": 0.003995090257376432,
+      "rmse_std": 0.00014870999801435824,
+      "t95": 6.0,
+      "t95_min": 6,
+      "t95_max": 6,
+      "grid": 0.7120000000000001
+    }
+  },
+  "verdict": {
+    "label": "INCONCLUSIVE",
+    "reason": "T95 is flat (slope=0.00, R2=0.00); the sample lever is ineffective at fixed compute",
+    "slope": 1.6282232830282249e-16,
+    "r2": 0.0
+  }
+}
