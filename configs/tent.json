@@ -1,0 +1,15 @@
+{
+  "key": 20261022,
+  "sizes": [10000, 30000, 100000],
+  "seeds": [0, 1, 2],
+  "train_steps": 4000,
+  "batch": 512,
+  "lr": 0.001,
+  "hidden": 256,
+  "depth": 2,
+  "eval_pairs": 3000,
+  "rollout_states": 40,
+  "rollout_T": 128,
+  "threshold": 0.05,
+  "out": "results/tent_v1"
+}
