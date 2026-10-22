@@ -140,3 +140,13 @@ boru hattı ve hizalama doğru; sorun kapasite/örnekleme.
   “expansive + yüksek tarif = üstel distillation maliyeti” iddiasını desteklemiyor.
 - Sonraki: aynı n’de model boyutu/adım sayısını artırıp T95’in log(compute) ile
   büyümesini ölç; ya da bu negatif sonucu bu formda kabul et.
+
+## Güncelleme — 2026-10-22 (negatif sonuç notu)
+
+- `docs/negative-result.md` yazıldı: üç deney, ortak tez, neyi değiştirir.
+- Özet: entangleman **temsili** gizler, **fonksiyonu** değil. Tavan:
+  öğrenilebilirlik + tarif uzunluğu + compute. Anahtar bir bölge, kriptografik
+  nokta değil. Etiketler: CAPPED / POLYNOMIAL / INCONCLUSIVE.
+- Doğru sonraki proje: yüksek entropili içerik + kriptografik trapdoor + TEE/remote;
+  ya da bu negatif sonucu not/blog olarak yayınla. Entanglement toy varyantlarını
+  kovalamak düşük getirili.

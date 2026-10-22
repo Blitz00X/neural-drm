@@ -137,3 +137,12 @@ head -1 VERDICT_EXPANSIVE.md
 - `figures/expansive_*.png`: T95 and one-step accuracy vs sample budget.
 
 The `.goal/` directory holds the goal-loop manifest and an append-only log.
+
+## Negative result (2026-10-22)
+
+The three experiments are consolidated in `docs/negative-result.md`:
+`VERDICT.md` (CAPPED), `VERDICT_EXPANSIVE.md` (POLYNOMIAL) and
+`VERDICT_TENT.md` (INCONCLUSIVE).  The shared conclusion is that entanglement
+hides representation, not the function; the security ceiling is task
+learnability/compute, not superposition.  Read that note before citing any
+number from this repository.
