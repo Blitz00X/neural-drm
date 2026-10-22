@@ -150,3 +150,27 @@ boru hattı ve hizalama doğru; sorun kapasite/örnekleme.
 - Doğru sonraki proje: yüksek entropili içerik + kriptografik trapdoor + TEE/remote;
   ya da bu negatif sonucu not/blog olarak yayınla. Entanglement toy varyantlarını
   kovalamak düşük getirili.
+
+## Handoff — 2026-10-22 (durum ve devam)
+
+- **Durum:** Entangled DRM hattı negatif sonuçla kapandı. Etiketler: karar
+  **CAPPED**, CA **POLYNOMIAL**, smooth tent **INCONCLUSIVE**. Yeni deney/plan
+  başlatılmadı; bu bir devir kaydı.
+- **Karar deneyi:** B2 3/3; fine-tune 10k (5/6) / 100k (5/6) / yok; key recovery
+  başarısız (en iyi Hamming 29); Hamming 50–53’te R²≈0.97 (anahtar bölge);
+  C 10k/0.931 CPU-sa, en ucuz 100k/0.143; B/C 0.571; A=0.
+- **CA:** n=3000 T95 3/129/129; n=10k/30k 129/129/129; k=4 0.885; k=5 0.50;
+  keskin öğrenilebilirlik eşiği, üstel-T değil.
+- **Tent:** RMSE 4.56/4.00/4.64e-3; T95 6/6/6; 512×3/12k 9.4e-4/T95=8; kaldıraç
+  sample değil compute; 128 adım için ~1e-36 hassasiyet.
+- **Ortak tez:** entangleman temsili gizler, fonksiyonu değil; tavan
+  öğrenilebilirlik + tarif uzunluğu + hesaplama. Anahtar nokta değil bölge.
+- **Ortam:** GTX 1650 Ti sürücüsü 19 Ekim’de kernel seviyesinde çöktü;
+  `cudaSetDevice` OOM; reboot gerekli, sudo yok. Tüm bilimsel koşular CPU’da;
+  GPU-saati **0**. Repo `neural-drm-phase0`; CPU venv
+  `<cpu-venv>/bin/python`.
+- **Devam:** önce `HANDOFF.md` + `docs/negative-result.md` oku. GPU düzelirse
+  `configs/decision.json` ile w=256/512/1024 spec koşusu. Bilimsel devam için
+  tek anlamlı tamamlama compute-scaling; daha güçlü proje yüksek entropili
+  içerik + kriptografik trapdoor + TEE/remote. Açık kararlar: yayın, hat kapatma,
+  ilk satış hattı.

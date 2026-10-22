@@ -146,3 +146,8 @@ The three experiments are consolidated in `docs/negative-result.md`:
 hides representation, not the function; the security ceiling is task
 learnability/compute, not superposition.  Read that note before citing any
 number from this repository.
+
+## Handoff
+
+`HANDOFF.md` records the state, environment (CPU/GPU failure), artifacts and the
+exact resume protocol for the negative-result line. Read it before continuing.
