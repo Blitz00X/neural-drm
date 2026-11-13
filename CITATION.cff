@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Entanglement Hides the Representation, Not the Function"
+abstract: "Three pre-registered CPU experiments on whether a license check can be entangled into a task's learned representation. Verdicts: CAPPED, POLYNOMIAL, INCONCLUSIVE. A negative result, scoped to a toy setup."
+type: software
+authors:
+  - family-names: Karahan
+    given-names: Kutay
+version: 0.1.0
+date-released: 2026-11-13
+license: MIT
+repository-code: "https://github.com/Blitz00X/neural-drm"
+keywords:
+  - negative result
+  - drm
+  - entanglement
+  - distillation
+  - model extraction

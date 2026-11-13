@@ -1,0 +1,82 @@
+decision.widths: [256]
+decision.seeds: [0, 1, 2]
+decision.octaves: 8
+decision.train_size: 65536
+decision.val_size: 4096
+decision.test_size: 100000
+decision.steps_ladder: [20000, 60000]
+decision.threads: 6
+decision.device: cpu
+A.accepted_seeds: [0, 1, 2]
+A.test_r2_range: [0.996273, 0.996055, 0.99658]
+A.test_acc_range: [0.97927, 0.98067, 0.98073]
+B1.accepted: [0, 2]
+B2.accepted: [0, 1, 2]
+B1.valid_r2_range: [0.991391, 0.991246, 0.992378]
+B1.valid_acc_range: [0.9673, 0.96717, 0.96763]
+B2.valid_r2_range: [0.995276, 0.995572, 0.995228]
+B2.valid_acc_range: [0.98022, 0.98064, 0.97972]
+finetune.seed0.rows: [(100, 0, False, 93.105), (1000, 0, False, 192.209), (10000, 5, True, 294.543)]
+finetune.seed0.min_n: 10000
+finetune.seed1.rows: [(100, 0, False, 94.855), (1000, 0, False, 186.532), (10000, 1, False, 282.976), (100000, 5, True, 382.437)]
+finetune.seed1.min_n: 100000
+finetune.seed2.rows: [(100, 0, False, 94.754), (1000, 0, False, 193.585), (10000, 1, False, 290.161), (100000, 1, False, 387.125)]
+finetune.seed2.min_n: None
+keyrecovery.seed0: {'success': False, 'restarts': 20, 'best_hamming': 29, 'max_hamming': 36}
+keyrecovery.seed1: {'success': False, 'restarts': 20, 'best_hamming': 30, 'max_hamming': 36}
+keyrecovery.seed2: {'success': False, 'restarts': 20, 'best_hamming': 35, 'max_hamming': 40}
+hamming.seed0.probes_45_58: 42
+hamming.seed0.probes_above_0.89: 5
+hamming.seed0.hits: [(50, 0.9715, 0.9744), (51, 0.917, 0.9341), (53, 0.8947, 0.9274), (53, 0.9689, 0.9611), (53, 0.9822, 0.9755)]
+hamming.seed0.best_wrong_key: {'r2': 0.9822, 'distance': 53, 'acc': 0.9755}
+hamming.seed1.probes_45_58: 42
+hamming.seed1.probes_above_0.89: 0
+hamming.seed1.hits: []
+hamming.seed1.best_wrong_key: {'r2': 0.3913, 'distance': 51, 'acc': 0.9279}
+hamming.seed2.probes_45_58: 42
+hamming.seed2.probes_above_0.89: 0
+hamming.seed2.hits: []
+hamming.seed2.best_wrong_key: {'r2': 0.4754, 'distance': 48, 'acc': 0.8725}
+C.min_n: 10000
+C.min_n_cumulative_seconds: 3352.285
+C.min_n_hours: 0.93119
+C.cheapest_n: 100000
+C.cheapest_seconds: 515.61
+C.cheapest_hours: 0.143225
+C.gate_rows: [(0.0001, 20000, False, 134.339), (0.0001, 60000, True, 381.271)]
+C.n100000.test: {'r2': 0.992619, 'acc': 0.96691, 'mse': 0.000102}
+C.n100000.steps: 60000
+C.n100000.seconds: 381.271
+budget.hours: 1.910947
+budget.limit: 8.0
+verdict: {'label': 'CAPPED', 'rule': 4, 'reason': 'B survived fine-tune and key recovery, but C reaches high fidelity in under one GPU-hour; the protection is capped by task learnability.', 'numbers': {'a_cost_gpu_hours': 0.0, 'c_min_n': 10000, 'c_min_n_cost_hours': 0.931190201226984, 'c_cheapest_n': 100000, 'c_gpu_hours': 0.14322495143639066, 'b_min_finetune_n': 10000, 'b_finetune_gpu_hours': 0.08181760639168917, 'b_over_c_cost_ratio': 0.5712524638420015, 'key_recovery_success': False}}
+B_over_C: 0.571252
+expansive.k3_n10000: {'k': 3, 'n': 10000, 'acc': 1.0, 't95': 129.0, 't95_min': 129, 't95_max': 129, 'tv': 0.0, 'exact_state_accuracy': 1.0}
+expansive.k3_n30000: {'k': 3, 'n': 30000, 'acc': 1.0, 't95': 129.0, 't95_min': 129, 't95_max': 129, 'tv': 0.0, 'exact_state_accuracy': 1.0}
+expansive.k3_n3000: {'k': 3, 'n': 3000, 'acc': 0.998747, 't95': 87.0, 't95_min': 3, 't95_max': 129, 'tv': 0.000145, 'exact_state_accuracy': 0.673112}
+expansive.k3_n3000_seed0: {'acc': 0.99624, 't95': 3, 'tv': 0.0004364013671874778, 'exact': 0.019336}
+expansive.k3_n3000_seed1: {'acc': 1.0, 't95': 129, 'tv': 0.0, 'exact': 1.0}
+expansive.k3_n3000_seed2: {'acc': 1.0, 't95': 129, 'tv': 0.0, 'exact': 1.0}
+expansive.calibration.k4_best: {'k': 4, 'rule_bits': 65536, 'n': 100000, 'steps': 4000, 'channels': 256, 'one_step_accuracy': 0.8849, 't95': 1}
+expansive.calibration.k5: [{'k': 5, 'rule_bits': 33554432, 'n': 100000, 'steps': 3000, 'channels': 32, 'one_step_accuracy': 0.4989, 't95': 1}, {'k': 5, 'rule_bits': 33554432, 'n': 300000, 'steps': 4000, 'channels': 32, 'one_step_accuracy': 0.5001, 't95': 1}]
+tent.100000: {'n': 100000, 'rmse': 0.004635149, 't95': 6.0, 't95_min': 6, 't95_max': 6, 'grid': 0.704069444}
+tent.10000: {'n': 10000, 'rmse': 0.004559761, 't95': 6.0, 't95_min': 6, 't95_max': 6, 'grid': 0.700090278}
+tent.30000: {'n': 30000, 'rmse': 0.00399509, 't95': 6.0, 't95_min': 6, 't95_max': 6, 'grid': 0.712}
+tent.n10000_seed0: {'rmse': 0.004161392, 't95': 6, 'grid': 0.694354}
+tent.n30000_seed0: {'rmse': 0.003966186, 't95': 6, 'grid': 0.703229}
+tent.n100000_seed0: {'rmse': 0.004875916, 't95': 6, 'grid': 0.691354}
+tent.n10000_seed1: {'rmse': 0.004718358, 't95': 6, 'grid': 0.717979}
+tent.n30000_seed1: {'rmse': 0.004189946, 't95': 6, 'grid': 0.723771}
+tent.n100000_seed1: {'rmse': 0.004687694, 't95': 6, 'grid': 0.708}
+tent.n10000_seed2: {'rmse': 0.004799532, 't95': 6, 'grid': 0.687937}
+tent.n30000_seed2: {'rmse': 0.003829139, 't95': 6, 'grid': 0.709}
+tent.n100000_seed2: {'rmse': 0.004341838, 't95': 6, 'grid': 0.712854}
+tent.verdict: {'label': 'INCONCLUSIVE', 'reason': 'T95 is flat (slope=0.00, R2=0.00); the sample lever is ineffective at fixed compute', 'slope': 1.6282232830282249e-16, 'r2': 0.0}
+tent.calibration: [{'n': 10000, 'steps': 4000, 'hidden': 256, 'depth': 2, 'rmse': 0.00434, 't95_state': 5}, {'n': 30000, 'steps': 6000, 'hidden': 256, 'depth': 2, 'rmse': 0.0029, 't95_state': 6}, {'n': 100000, 'steps': 6000, 'hidden': 256, 'depth': 2, 'rmse': 0.00336, 't95_state': 6}, {'n': 30000, 'steps': 12000, 'hidden': 512, 'depth': 3, 'rmse': 0.000944, 't95_state': 8}]
+total.decision_hours: 1.910947
+total.expansive_hours: 0.362367
+total.tent_hours: 0.048576
+total.all_hours: 2.32189
+precheck.corr_c8_c4: 0.997823
+precheck.std_c8: 0.116806
+precheck.std_c4: 0.124104
