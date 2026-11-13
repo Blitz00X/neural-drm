@@ -6,7 +6,7 @@ type: software
 authors:
   - family-names: Karahan
     given-names: Kutay
-version: 0.1.0
+version: 1.0.1
 date-released: 2026-11-13
 license: MIT
 repository-code: "https://github.com/Blitz00X/neural-drm"

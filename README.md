@@ -1,6 +1,6 @@
 # Neural DRM — Phase 0
 
-**Status: public research note, version 1.0 (13 November 2026). Not peer reviewed.**
+**Status: public research note, version 1.0.1 (13 November 2026). Not peer reviewed.**
 
 A small, pre-registered study of whether embedding a license check in the same
 learned representation as a task makes the check expensive to remove. The short

@@ -1,6 +1,6 @@
 # Entanglement Hides the Representation, Not the Function
 
-Version 1.0 · 13 November 2026 · Not peer reviewed. Every number is traced in `CLAIMS.md`.
+Version 1.0.1 · 13 November 2026 · Not peer reviewed. Every number is traced in `CLAIMS.md`.
 
 ## 0. Abstract
 
